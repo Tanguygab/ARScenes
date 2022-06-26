@@ -1,0 +1,21 @@
+world: world
+npcs:
+ Tails:
+  skin: http://novask.in/1986023594.png
+  pose: 0
+  pos:
+    x: -143.0
+    y: 85.0
+    z: -140.0
+    yaw: 0.0
+    pitch: 0.0
+
+actions:
+  - "msg: Hi I'm Tails"
+  - "wait: 1000"
+  - "msg: Follow me!"
+  - "wait: 1000"
+  - "walk: Tails -138 81 -104"
+  - "wait: 10000"
+  - "pose: Tails 3"
+  - "msg: Here we are"

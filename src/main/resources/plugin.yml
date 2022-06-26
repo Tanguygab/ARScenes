@@ -1,0 +1,9 @@
+name: ARScenes
+version: 1.0
+main: io.github.tanguygab.arscenes.ARScenes
+api-version: 1.19
+authors: [ Tanguygab ]
+description: Make... scenes? in Minecraft? what are you doing, a movie or smth? OH yeah I wanted to remake Sonic X Season 3... sshh
+commands:
+  arscenes:
+    permission: arscenes.admin
