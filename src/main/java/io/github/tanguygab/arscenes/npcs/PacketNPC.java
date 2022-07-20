@@ -78,26 +78,17 @@ public class PacketNPC {
         double cx = cl.getX(), cy = cl.getY(), cz = cl.getZ();
         double fx = loc.getX(), fy = loc.getY(), fz = loc.getZ();
         boolean nx = Math.max(cx,fx) == cx, ny = Math.max(cy,fy) == cy, nz = Math.max(cz,fz) == cz;
-        p.sendMessage(cx+" "+fx+" "+nx+" "+increment(cx,nx));
-        p.sendMessage(cy+" "+fy+" "+ny+" "+increment(cy,ny));
-        p.sendMessage(cz+" "+fz+" "+nz+" "+increment(cz,nz));
 
         while (checkContinue(cx,fx,nx) || checkContinue(cy,fy,ny) || checkContinue(cz,fz,nz)) {
             if (checkContinue(cx,fx,nx)) cx = increment(cx,nx);
             if (checkContinue(cy,fy,ny)) cy = increment(cy,ny);
             if (checkContinue(cz,fz,nz)) cz = increment(cz,nz);
-            p.sendMessage(cx+" "+cy+" "+cz);
             teleport(p,new Location(loc.getWorld(),cx,cy,cz));
             try {Thread.sleep(50);}
             catch (InterruptedException ignored) {}
         }
         setLoc(loc);
     }
-
-    private short posToShort(double from, double to) {
-        return (short) ((to * 32 - from * 32) * 128);
-    }
-
     private double increment(double from, boolean inverted) {
         if (inverted) from-=0.1;
         else from+=0.1;
