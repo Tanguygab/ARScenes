@@ -72,7 +72,15 @@ public class PacketNPC {
             e.printStackTrace();
         }
     }
-    public void move(Player p, Location loc) {
+
+    public void rotate(Player p, float yaw, float pitch) {
+        Location loc = entity.getBukkitEntity().getLocation();
+        loc.setYaw(yaw);
+        loc.setPitch(pitch);
+        setLoc(loc);
+        sendPacket(p,new PacketPlayOutEntity.PacketPlayOutEntityLook(entity.ae(), (byte)((int)(yaw * 256.0F / 360.0F)),(byte)((int)(pitch * 256.0F / 360.0F)),true));
+    }
+    public void move(Player p, Location loc, int delay) {
         Location cl = entity.getBukkitEntity().getLocation();
 
         double cx = cl.getX(), cy = cl.getY(), cz = cl.getZ();
@@ -84,7 +92,7 @@ public class PacketNPC {
             if (checkContinue(cy,fy,ny)) cy = increment(cy,ny);
             if (checkContinue(cz,fz,nz)) cz = increment(cz,nz);
             teleport(p,new Location(loc.getWorld(),cx,cy,cz));
-            try {Thread.sleep(50);}
+            try {Thread.sleep(delay);}
             catch (InterruptedException ignored) {}
         }
         setLoc(loc);

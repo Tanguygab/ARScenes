@@ -1,5 +1,7 @@
 package io.github.tanguygab.arscenes.actions;
 
+import io.github.tanguygab.arscenes.ARScenes;
+import io.github.tanguygab.arscenes.Scene;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -36,14 +38,20 @@ public abstract class Action {
 
     public abstract boolean replaceMatch();
 
+    public Scene getScene(Player p) {
+        return ARScenes.get().inScene.get(p);
+    }
+
     public abstract void execute(String match, Player p);
 
     public static void registerAll() {
         ACTIONS.addAll(List.of(
                 new MsgAction(),
                 new WaitAction(),
+
                 new TpAction(),
                 new MoveAction(),
+                new RotateAction(),
                 new PoseAction()
         ));
     }

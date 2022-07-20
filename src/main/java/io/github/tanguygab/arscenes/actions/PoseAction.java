@@ -23,10 +23,9 @@ public class PoseAction extends Action {
 
     @Override
     public void execute(String match, Player p) {
-        Scene scene = ARScenes.get().inScene.get(p);
         String[] args = match.split(" ");
         String npc = args[0];
         int pose = Integer.parseInt(args[1]);
-        scene.npcs.get(npc).setPose(p,pose);
+        getScene(p).npcs.get(npc).setPose(p,pose);
     }
 }
