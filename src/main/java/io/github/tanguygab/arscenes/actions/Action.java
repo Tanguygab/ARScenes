@@ -42,6 +42,7 @@ public abstract class Action {
         ACTIONS.addAll(List.of(
                 new MsgAction(),
                 new WaitAction(),
+                new TpAction(),
                 new MoveAction(),
                 new PoseAction()
         ));
