@@ -23,7 +23,7 @@ public class CanMoveAction extends Action {
     public void execute(String match, Player p) {
         String[] args = match.split(" ");
         boolean canMove = Boolean.parseBoolean(args[0]);
-        boolean canLook = args.length > 1 && Boolean.parseBoolean(args[1]);
+        boolean canLook = args.length > 1 ? Boolean.parseBoolean(args[1]) : canMove;
         getSession(p).canMove = canMove;
         getSession(p).canLook = canLook;
     }
