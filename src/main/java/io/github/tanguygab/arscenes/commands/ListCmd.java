@@ -1,7 +1,7 @@
 package io.github.tanguygab.arscenes.commands;
 
 import io.github.tanguygab.arscenes.ARScenes;
-import io.github.tanguygab.arscenes.Chapter;
+import io.github.tanguygab.arscenes.scenes.Chapter;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.TextComponent;

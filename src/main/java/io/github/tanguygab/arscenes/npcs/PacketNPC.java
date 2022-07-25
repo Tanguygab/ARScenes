@@ -115,7 +115,6 @@ public class PacketNPC {
     }
 
     public void setPose(Player p, int pos) {
-        p.sendMessage(pos+" new pose");
         entity.ai().b(new DataWatcherObject<>(6, DataWatcherRegistry.t),EntityPose.values()[pos]);
         updateMetadata(p);
     }

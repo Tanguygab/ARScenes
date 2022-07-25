@@ -1,7 +1,7 @@
 package io.github.tanguygab.arscenes.actions;
 
 import io.github.tanguygab.arscenes.ARScenes;
-import io.github.tanguygab.arscenes.Scene;
+import io.github.tanguygab.arscenes.scenes.SceneSession;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -31,15 +31,15 @@ public abstract class Action {
 
     public static void findAndExecute(String event, Player p) {
         Action e = find(event);
-        execute(event,e,p);
+        execute(ARScenes.get().sessions.get(p).parseInputs(event),e,p);
     }
 
     public abstract Pattern getPattern();
 
     public abstract boolean replaceMatch();
 
-    public Scene getScene(Player p) {
-        return ARScenes.get().inScene.get(p);
+    public SceneSession getSession(Player p) {
+        return ARScenes.get().sessions.get(p);
     }
 
     public abstract void execute(String match, Player p);
@@ -48,6 +48,7 @@ public abstract class Action {
         ACTIONS.addAll(List.of(
                 new MsgAction(),
                 new WaitAction(),
+                new InputAction(),
 
                 new TpAction(),
                 new MoveAction(),

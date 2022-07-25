@@ -1,7 +1,6 @@
 package io.github.tanguygab.arscenes.actions;
 
-import io.github.tanguygab.arscenes.ARScenes;
-import io.github.tanguygab.arscenes.Scene;
+import io.github.tanguygab.arscenes.scenes.Scene;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -31,7 +30,7 @@ public class MoveAction extends Action {
 
         int delay = args.length > 4 ? Integer.parseInt(args[4]) : 50;
 
-        Scene scene = getScene(p);
+        Scene scene = getSession(p).getScene();
         Location loc = new Location(scene.world,x,y,z);
         scene.npcs.get(npc).move(p,loc,delay);
     }

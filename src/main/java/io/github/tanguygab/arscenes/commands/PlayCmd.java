@@ -1,9 +1,10 @@
 package io.github.tanguygab.arscenes.commands;
 
 import io.github.tanguygab.arscenes.ARScenes;
-import io.github.tanguygab.arscenes.Chapter;
-import io.github.tanguygab.arscenes.Scene;
+import io.github.tanguygab.arscenes.scenes.Chapter;
+import io.github.tanguygab.arscenes.scenes.Scene;
 import io.github.tanguygab.arscenes.Utils;
+import io.github.tanguygab.arscenes.scenes.SceneSession;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -41,19 +42,20 @@ public class PlayCmd {
             return;
         }
         if (
-        ARScenes.get().inScene.containsKey(p)) {
+        ARScenes.get().sessions.containsKey(p)) {
             Utils.msg(sender,"&cPlayer already in scene!");
             return;
         }
 
-        ARScenes.get().inScene.put(p,scene);
-        new Thread(()->{
+        Thread thread = new Thread(()->{
             scene.start(p);
             try {Thread.sleep(5000);}
             catch (InterruptedException e) {throw new RuntimeException(e);}
             scene.end(p);
-            ARScenes.get().inScene.remove(p);
-        }).start();
+            ARScenes.get().sessions.remove(p);
+        });
+        ARScenes.get().sessions.put(p,new SceneSession(p,scene,thread));
+        thread.start();
     }
 
     public static List<String> onTabComplete(String[] args) {

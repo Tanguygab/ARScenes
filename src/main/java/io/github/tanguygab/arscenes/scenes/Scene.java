@@ -1,5 +1,6 @@
-package io.github.tanguygab.arscenes;
+package io.github.tanguygab.arscenes.scenes;
 
+import io.github.tanguygab.arscenes.Utils;
 import io.github.tanguygab.arscenes.config.ConfigurationFile;
 import io.github.tanguygab.arscenes.actions.Action;
 import io.github.tanguygab.arscenes.npcs.PacketNPC;

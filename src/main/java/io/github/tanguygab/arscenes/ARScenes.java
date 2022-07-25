@@ -6,6 +6,9 @@ import io.github.tanguygab.arscenes.config.ConfigurationFile;
 import io.github.tanguygab.arscenes.config.YamlConfigurationFile;
 import io.github.tanguygab.arscenes.actions.Action;
 import io.github.tanguygab.arscenes.npcs.skins.SkinManager;
+import io.github.tanguygab.arscenes.scenes.Chapter;
+import io.github.tanguygab.arscenes.scenes.Scene;
+import io.github.tanguygab.arscenes.scenes.SceneSession;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -24,8 +27,8 @@ public final class ARScenes extends JavaPlugin implements CommandExecutor {
 
     private static ARScenes instance;
     private ConfigurationFile config;
-    public final Map<String,Chapter> chapters = new HashMap<>();
-    public final Map<Player,Scene> inScene = new HashMap<>();
+    public final Map<String, Chapter> chapters = new HashMap<>();
+    public final Map<Player, SceneSession> sessions = new HashMap<>();
     public SkinManager skins;
 
     @Override
@@ -47,6 +50,7 @@ public final class ARScenes extends JavaPlugin implements CommandExecutor {
                 if (!file.isDirectory()) continue;
                 chapters.put(file.getName(),new Chapter(file));
             }
+            getServer().getPluginManager().registerEvents(new Listener(),this);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -59,6 +63,10 @@ public final class ARScenes extends JavaPlugin implements CommandExecutor {
     @Override
     public void onDisable() {
         HandlerList.unregisterAll(this);
+        sessions.forEach((p,session)->{
+            if (session.thread.getState() == Thread.State.RUNNABLE)
+            session.thread.interrupt();
+        });
         chapters.clear();
     }
 

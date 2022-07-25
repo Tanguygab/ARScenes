@@ -1,7 +1,6 @@
 package io.github.tanguygab.arscenes.actions;
 
-import io.github.tanguygab.arscenes.ARScenes;
-import io.github.tanguygab.arscenes.Scene;
+import io.github.tanguygab.arscenes.scenes.Scene;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -28,7 +27,7 @@ public class TpAction extends Action {
         double x = Double.parseDouble(args[1]);
         double y = Double.parseDouble(args[2]);
         double z = Double.parseDouble(args[3]);
-        Scene scene = getScene(p);
+        Scene scene = getSession(p).getScene();
         Location loc = new Location(scene.world,x,y,z);
         scene.npcs.get(npc).teleport(p,loc);
     }
