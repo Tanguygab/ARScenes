@@ -13,6 +13,7 @@ public class SceneSession {
     public final Map<String,String> inputs = new HashMap<>();
     public String currentInput = "";
     public boolean canMove = true;
+    public boolean canLook = true;
 
     public SceneSession(Player player, Scene scene, Thread thread) {
         this.player = player;

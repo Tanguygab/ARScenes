@@ -50,6 +50,8 @@ public abstract class Action {
                 new WaitAction(),
                 new InputAction(),
 
+                new CanMoveAction(),
+
                 new TpAction(),
                 new MoveAction(),
                 new RotateAction(),

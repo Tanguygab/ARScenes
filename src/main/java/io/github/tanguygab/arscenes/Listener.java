@@ -26,6 +26,11 @@ public class Listener implements org.bukkit.event.Listener {
         Player p = e.getPlayer();
         SceneSession session;
         if ((session = ARScenes.get().sessions.get(p)) == null) return;
+        if (e.getTo() != null && e.getFrom().distance(e.getTo()) == 0) {
+            e.setCancelled(!session.canLook);
+            return;
+        }
+
         if (!session.canMove)
             e.setCancelled(true);
     }
