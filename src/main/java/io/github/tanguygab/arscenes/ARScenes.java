@@ -63,10 +63,8 @@ public final class ARScenes extends JavaPlugin implements CommandExecutor {
     @Override
     public void onDisable() {
         HandlerList.unregisterAll(this);
-        sessions.forEach((p,session)->{
-            if (session.thread.getState() == Thread.State.RUNNABLE)
-            session.thread.interrupt();
-        });
+        sessions.forEach((p,session)->session.stop());
+        sessions.clear();
         chapters.clear();
     }
 

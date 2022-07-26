@@ -125,4 +125,8 @@ public class PacketNPC {
     private void sendPacket(Player p, Packet<PacketListenerPlayOut> packet) {
         ((CraftPlayer)p).getHandle().b.a(packet);
     }
+
+    public void spectate(Player p) {
+        sendPacket(p,new PacketPlayOutCamera(entity));
+    }
 }

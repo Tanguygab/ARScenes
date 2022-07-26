@@ -34,4 +34,10 @@ public class SceneSession {
             str = str.replace("%input-"+input+"%",inputs.get(input));
         return str;
     }
+
+    public void stop() {
+        if (thread.getState() == Thread.State.RUNNABLE)
+            thread.interrupt();
+        scene.end(player);
+    }
 }

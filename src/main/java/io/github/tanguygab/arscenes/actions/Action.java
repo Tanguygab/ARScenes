@@ -51,6 +51,7 @@ public abstract class Action {
                 new InputAction(),
 
                 new CanMoveAction(),
+                new SpectateAction(),
 
                 new TpAction(),
                 new MoveAction(),
